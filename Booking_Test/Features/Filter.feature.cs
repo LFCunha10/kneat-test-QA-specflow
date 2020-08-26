@@ -105,19 +105,21 @@ namespace Booking_Test.Features
 #line hidden
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Filter my search by stars", new string[] {
-                "filters",
-                "five-star",
-                "",
-                "star-rating"}, SourceLine=17)]
-        public virtual void FilterMySearchByStars()
+        public virtual void FilterMySearchByStars(string hotelName, string isListed, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
+            string[] @__tags = new string[] {
                     "filters",
                     "five-star",
                     "",
                     "star-rating"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("HotelName", hotelName);
+            argumentsOfScenario.Add("IsListed", isListed);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Filter my search by stars", null, tagsOfScenario, argumentsOfScenario);
 #line 18
 this.ScenarioInitialize(scenarioInfo);
@@ -148,35 +150,53 @@ this.FeatureBackground();
 #line 20
  testRunner.When("I click on five star filter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Hotel name",
-                            "Is Listed"});
-                table2.AddRow(new string[] {
-                            "The Savoy Hotel",
-                            "Yes"});
-                table2.AddRow(new string[] {
-                            "George Limerick Hotel",
-                            "No"});
 #line 21
- testRunner.Then("I should be able to validate if 5 star hotel is listed or not", ((string)(null)), table2, "Then ");
+ testRunner.Then(string.Format("I will be able to validate if five star {0} {1}", hotelName, isListed), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("Filter my search by \"Sauna\" option", new string[] {
+        [TechTalk.SpecRun.ScenarioAttribute("Filter my search by stars, The Savoy Hotel", new string[] {
                 "filters",
-                "sauna",
-                "spa-wellness-centre"}, SourceLine=26)]
-        public virtual void FilterMySearchBySaunaOption()
+                "five-star",
+                "",
+                "star-rating"}, SourceLine=23)]
+        public virtual void FilterMySearchByStars_TheSavoyHotel()
         {
-            string[] tagsOfScenario = new string[] {
+#line 18
+this.FilterMySearchByStars("The Savoy Hotel", "Is Listed", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Filter my search by stars, George Limerick Hotel", new string[] {
+                "filters",
+                "five-star",
+                "",
+                "star-rating"}, SourceLine=23)]
+        public virtual void FilterMySearchByStars_GeorgeLimerickHotel()
+        {
+#line 18
+this.FilterMySearchByStars("George Limerick Hotel", "Is not listed", ((string[])(null)));
+#line hidden
+        }
+        
+        public virtual void FilterMySearchBySaunaOption(string hotelName, string isListed, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
                     "filters",
                     "sauna",
                     "spa-wellness-centre"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("HotelName", hotelName);
+            argumentsOfScenario.Add("IsListed", isListed);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Filter my search by \"Sauna\" option", null, tagsOfScenario, argumentsOfScenario);
-#line 27
+#line 28
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -199,35 +219,48 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line hidden
-#line 28
+#line 29
  testRunner.Given("I am on Results Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 29
+#line 30
  testRunner.When("I click on Sauna filter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-                TechTalk.SpecFlow.Table table3 = new TechTalk.SpecFlow.Table(new string[] {
-                            "Hotel name",
-                            "Is Listed"});
-                table3.AddRow(new string[] {
-                            "Limerick Strand Hotel",
-                            "Yes"});
-                table3.AddRow(new string[] {
-                            "George Limerick Hotel",
-                            "No"});
-#line 30
- testRunner.Then("I should be able to validate if hotel is listed or not", ((string)(null)), table3, "Then ");
+#line 31
+ testRunner.Then(string.Format("I should be able to validate if {0} {1}", hotelName, isListed), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
         }
         
-        [TechTalk.SpecRun.ScenarioAttribute("If I filter my search by 5 stars room, the results must be rated as 5 stars", SourceLine=35)]
+        [TechTalk.SpecRun.ScenarioAttribute("Filter my search by \"Sauna\" option, Limerick Strand Hotel", new string[] {
+                "filters",
+                "sauna",
+                "spa-wellness-centre"}, SourceLine=33)]
+        public virtual void FilterMySearchBySaunaOption_LimerickStrandHotel()
+        {
+#line 28
+this.FilterMySearchBySaunaOption("Limerick Strand Hotel", "Is Listed", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("Filter my search by \"Sauna\" option, George Limerick Hotel", new string[] {
+                "filters",
+                "sauna",
+                "spa-wellness-centre"}, SourceLine=33)]
+        public virtual void FilterMySearchBySaunaOption_GeorgeLimerickHotel()
+        {
+#line 28
+this.FilterMySearchBySaunaOption("George Limerick Hotel", "Is not listed", ((string[])(null)));
+#line hidden
+        }
+        
+        [TechTalk.SpecRun.ScenarioAttribute("If I filter my search by 5 stars room, the results must be rated as 5 stars", SourceLine=37)]
         public virtual void IfIFilterMySearchBy5StarsRoomTheResultsMustBeRatedAs5Stars()
         {
             string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("If I filter my search by 5 stars room, the results must be rated as 5 stars", null, tagsOfScenario, argumentsOfScenario);
-#line 36
+#line 38
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             bool isScenarioIgnored = default(bool);
@@ -250,13 +283,13 @@ this.ScenarioInitialize(scenarioInfo);
 #line 6
 this.FeatureBackground();
 #line hidden
-#line 37
+#line 39
  testRunner.Given("I am on Results Page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 38
+#line 40
  testRunner.When("I click on five star filter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 39
+#line 41
  testRunner.Then("I should see five stars in each ad", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

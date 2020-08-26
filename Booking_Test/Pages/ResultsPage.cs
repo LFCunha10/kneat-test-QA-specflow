@@ -125,57 +125,56 @@ namespace Booking_Test.Pages
             FIVE_STAR_RATING.Click();
             Thread.Sleep(3000);
         }
-        internal void validateIfFiveStarHotelsWereListed(Table _hotelInfo)
-        {
-            var hotelInfo = TableUtils.convertTableToDictionary(_hotelInfo);
-
-            foreach (var index in hotelInfo)
-            {
-                if (index.Value == "Yes")
-                {
-                    var HOTELS = _driver.FindElements(By.CssSelector("[data-class=\"5\"]"));
-                    foreach(var element in HOTELS)
-                    {
-                        if (element.Text.Contains(index.Key))
-                        {
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    var HOTELS = _driver.FindElements(By.CssSelector("[data-class=\"5\"]"));
-                    foreach (var element in HOTELS)
-                    {
-                        if (element.Text.Contains(index.Key))
-                        {
-                            throw new Exception(@"The hotel " + index.Key + " was found, but doesn't should be");
-                        }
-                    }
-                }
-            }
-        }
-
-        internal void validateIfSaunaHotelsWereListed(Table _hotelInfo)
+        internal void validateIfFiveStarHotelsWereListed(string hotelName, string shouldAppear)
         {
             Thread.Sleep(6000);
-            var hotelInfo = TableUtils.convertTableToDictionary(_hotelInfo);
 
-            foreach (var index in hotelInfo)
+            if (shouldAppear == "Yes")
             {
-                var HOTEL = _driver.FindElements(By.XPath("//*[contains(., '" + index.Key + "')]"));
-
-                if (index.Value == "Yes")
+                var HOTELS = _driver.FindElements(By.CssSelector("[data-class=\"5\"]"));
+                foreach (var element in HOTELS)
                 {
-                    if (HOTEL.Count <= 0)
-                        throw new Exception(@"The hotel " + index.Key + " wasn't found, but it should be");
-                }
-                else
-                {
-                    if (HOTEL.Count > 0)
-                        throw new Exception(@"The hotel " + index.Key + " was found, but doesn't should be");
+                    if (element.Text.Contains(hotelName))
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        throw new Exception(@"The hotel " + hotelName + " should appear on this list, but it doesn't");
+                    }
                 }
             }
+            else
+            {
+                var HOTELS = _driver.FindElements(By.CssSelector("[data-class=\"5\"]"));
+                foreach (var element in HOTELS)
+                {
+                    if (element.Text.Contains(hotelName))
+                    {
+                        throw new Exception(@"The hotel " + hotelName + " was found, but it doesn't");
+                    }
+                }
+            }
+
+        }
+
+        internal void validateIfSaunaHotelsWereListed(string hotelName, string shouldAppear)
+        {
+            Thread.Sleep(6000);
+
+            var HOTEL = _driver.FindElements(By.XPath("//*[contains(., '" + hotelName + "')]"));
+
+            if (shouldAppear == "Yes")
+            {
+                if (HOTEL.Count <= 0)
+                    throw new Exception(@"The hotel " + hotelName + " wasn't found, but it should be");
+            }
+            else
+            {
+                if (HOTEL.Count > 0)
+                    throw new Exception(@"The hotel " + hotelName + " was found, but doesn't should be");
+            }
+
         }
 
         internal void verifyFiveStar()

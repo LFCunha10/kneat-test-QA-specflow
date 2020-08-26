@@ -18,19 +18,21 @@ Background:
 Scenario: Filter my search by stars
 	Given I am on Results Page
 	When I click on five star filter
-	Then I should be able to validate if 5 star hotel is listed or not
-	| Hotel name            | Is Listed |
-	| The Savoy Hotel       | Yes       |
-	| George Limerick Hotel | No        |
+	Then I will be able to validate if five star <HotelName> <IsListed>
+	Examples: 
+		| HotelName             | IsListed      |
+		| The Savoy Hotel       | Is Listed     |
+		| George Limerick Hotel | Is not listed |
 
 @filters @sauna @spa-wellness-centre
 Scenario: Filter my search by "Sauna" option
 	Given I am on Results Page
 	When I click on Sauna filter
-	Then I should be able to validate if hotel is listed or not
-	| Hotel name            | Is Listed |
-	| Limerick Strand Hotel | Yes       |
-	| George Limerick Hotel | No        |
+	Then I should be able to validate if <HotelName> <IsListed>
+	Examples: 
+		| HotelName             | IsListed      |
+		| Limerick Strand Hotel | Is Listed     |
+		| George Limerick Hotel | Is not listed |
 
 
 Scenario: If I filter my search by 5 stars room, the results must be rated as 5 stars

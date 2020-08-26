@@ -71,17 +71,17 @@ namespace Booking_Test.Steps
             resultsPage.clickSaunaFilter();
         }
 
-        [Then(@"I should be able to validate if 5 star hotel is listed or not")]
-        public void ThenIShouldBeAbleToValidateIfStarHotelIsListedOrNot(Table hotelInfo)
+
+        [Then(@"I will be able to validate if five star (.*) (.*)")]
+        public void ThenIWillBeAbleToValidateIfFiveStar(string hotelName, string shouldAppear)
         {
-            resultsPage.validateIfFiveStarHotelsWereListed(hotelInfo);
+            resultsPage.validateIfFiveStarHotelsWereListed(hotelName, shouldAppear);
         }
 
-
-        [Then(@"I should be able to validate if hotel is listed or not")]
-        public void ThenIShouldBeAbleToValidateIfHotelIsListedOrNot(Table hotelInfo)
+        [Then(@"I should be able to validate if (.*) (.*)")]
+        public void ThenIShouldBeAbleToValidateIf(string hotelName, string shouldAppear)
         {
-            resultsPage.validateIfSaunaHotelsWereListed(hotelInfo);
+            resultsPage.validateIfSaunaHotelsWereListed(hotelName, shouldAppear);
         }
         
         [Then(@"I should see five stars in each ad")]
