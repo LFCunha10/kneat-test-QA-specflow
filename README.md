@@ -6,19 +6,19 @@ This is a .net core project, running on Specflow Framework.
 
 1. Webdriver
 
-This project can be executed against Chrome and Edge. Make sure that you have both installed.
+    This project can be executed against Chrome and Edge. Make sure that you have both installed.
 
 1. Visual Studio 2019
 
 1. Test Explorer on Visual Studio
 
-Can be found at `Test menu > Test Explorer`
+    Can be found at `Test menu > Test Explorer`
 
 1. SpecFlow Activation
 
-When you will run SpecFlow Framework for the first time, you can be asked to free activate it. 
+    When you will run SpecFlow Framework for the first time, you can be asked to free activate it. 
 
-If when you run the tests, nothing happens:
+    If when you run the tests, nothing happens:
 
     1. Go to `project folder > Test Results` and open the first text file. You will se the link for activation.
 
