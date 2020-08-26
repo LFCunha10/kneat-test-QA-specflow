@@ -25,7 +25,7 @@ This is a .net core project, running on Specflow Framework.
 
 ## How to read the tests
 
-This project was written using BDD, with Jenkins language, and structured following the "Page Object Model" Design Pattern.
+This project was written using BDD, with Gherkin language (Cucumber), and structured following the "Page Object Model" Design Pattern.
 
 The framework SpecFlow will bind Each line of the test script (BDD) with a correspondent step definition. These step definitions will call methods from classes, that mapping each web page accessed during the tests.
 
